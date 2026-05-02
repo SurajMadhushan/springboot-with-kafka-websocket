@@ -7,9 +7,13 @@ Architecture Overview
 Producer (Spring Boot) → Apache Kafka (Topic: test) → Consumer (Spring Boot) → WebSocket → Frontend (React Vite Dashboard)
 
 Components 
+
 Kafka Producer
+
 Generates real-time crypto price data (BTC, ETH, SOL) and sends data to a Kafka topic. 
+
 Runs automatically without needing an API trigger.
+
 Tech: Spring Boot, KafkaTemplate
 
 Kafka Consumer
