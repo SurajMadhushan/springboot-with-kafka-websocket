@@ -1,117 +1,81 @@
-🚀 Real-Time Crypto Dashboard using Kafka + Spring Boot + React
+Real-Time Crypto Dashboard using Kafka + Spring Boot + React
 
-This project is a real-time data streaming system that demonstrates how to build a full-stack application using:
+This project is a real-time data streaming system that demonstrates how to build a full-stack application using Apache Kafka (event streaming), Spring Boot (Producer & Consumer services), and React (Vite) for the frontend dashboard.
+The system simulates real-time cryptocurrency price updates (generated data) and displays them in a live dashboard with charts.
 
-->Apache Kafka (event streaming)
-->Spring Boot (Producer & Consumer services)
-->React (Vite) (Frontend dashboard)
+Architecture Overview
+Producer (Spring Boot) → Apache Kafka (Topic: test) → Consumer (Spring Boot) → WebSocket → Frontend (React Vite Dashboard)
 
-The system simulates real-time cryptocurrency price updates(generated) and displays them in a live dashboard with charts.
+Components 
+Kafka Producer
+Generates real-time crypto price data (BTC, ETH, SOL) and sends data to a Kafka topic. 
+Runs automatically without needing an API trigger.
+Tech: Spring Boot, KafkaTemplate
 
-🧩 Architecture Overview
- Producer(Spring Boot)
-        │
-        ▼
- Apache Kafka(Topic: test)
-        │
-        ▼
- Consumer(Spring Boot)
-        │
-        ▼
-    WebSocket
-        │
-        ▼
-Frontend(React Vite Dashboard)
+Kafka Consumer
+Listens to the Kafka topic, processes incoming messages, and exposes data to the frontend via WebSocket.
+Tech: Spring Boot, @KafkaListener
 
-⚙️ Components
-🔹 1. Kafka Producer
-->Generates real-time crypto price data (BTC, ETH, SOL)
-->Sends data to Kafka topic
-->Runs automatically (no API trigger needed)
+Frontend Dashboard
+Built with React and Vite. 
+Displays live prices, price changes, and charts (line, bar, dot). 
+Updates every few seconds.
+Features include tab-based UI (BTC, ETH, SOL) and real-time updates.
 
-Tech:
-->Spring Boot
-->KafkaTemplate
 
-🔹 2. Kafka Consumer
-->Listens to Kafka topic
-->Processes incoming messages
-->Exposes data to frontend via: WebSocket
-
-Tech:
-->Spring Boot
-->@KafkaListener
-
-🔹 3. Frontend Dashboard
-->Built with React + Vite
-
-Displays:
-->Live prices
-->Price changes
-->Charts (line/bar/dot)
-->Updates every few seconds
-
-Features:
-->Tab-based UI (BTC / ETH / SOL)
-->Real-time updates
-
-🔗 GitHub Repositories
-
+GitHub Repositories
 This project is split into three independent services:
 
-🔹 Producer Service
-👉 https://github.com/SurajMadhushan/kafka-producer-service.git
+Producer Service
+https://github.com/SurajMadhushan/kafka-producer-service.git
 
-🔹 Consumer Service
-👉 https://github.com/SurajMadhushan/kafka-consumer-service.git
+Consumer Service
+https://github.com/SurajMadhushan/kafka-consumer-service.git
 
-🔹 Frontend Dashboard (React Vite)
-👉 https://github.com/SurajMadhushan/kafka-react-frontend.git
+Frontend Dashboard (React Vite)
+https://github.com/SurajMadhushan/kafka-react-frontend.git
 
-📊 Sample Data Format
+Sample Data Format
 {
-  "symbol": "BTC",
-  "price": 67234.12,
-  "timestamp": 1714459200000
+"symbol": "BTC",
+"price": 67234.12,
+"timestamp": 1714459200000
 }
 
-🔌 Kafka Setup (KRaft Mode)
-# Generate Cluster ID
+Kafka Setup (KRaft Mode)
+Generate Cluster ID
 bin/windows/kafka-storage.bat random-uuid
 
-# Format storage
+Format storage
 bin/windows/kafka-storage.bat format -t <CLUSTER_ID> -c config/kraft/server.properties
 
-# Start Kafka
+Start Kafka
 bin/windows/kafka-server-start.bat config/kraft/server.properties
 
+Features
+Real-time data streaming using Kafka
+Decoupled microservice architecture
+Scalable event-driven design
+Live updating dashboard
+Custom chart rendering (Canvas-based)
 
-⚡ Features
-->Real-time data streaming using Kafka
-->Decoupled microservice architecture
-->Scalable event-driven design
-->Live updating dashboard
-->Custom chart rendering (Canvas-based)
+What You Learn From This Project
+Kafka fundamentals (Producer, Consumer, Topics)
+Event-driven architecture
+Real-time data pipelines
+Spring Boot Kafka integration
+React real-time UI updates
+WebSocket streaming
 
-🧠 What You Learn From This Project
-->Kafka fundamentals (Producer, Consumer, Topics)
-->Event-driven architecture
-->Real-time data pipelines
-->Spring Boot Kafka integration
-->React real-time UI updates
-->WebSocket streaming
+Future Improvements
+Add real crypto APIs (e.g., Binance)
+Add authentication (JWT)
+Deploy using Docker and AWS
+Add persistent storage (MySQL)
 
-🚀 Future Improvements
-->Add real crypto APIs (e.g., Binance)
-->Add authentication (JWT)
-->Deploy using Docker + AWS
-->Add persistent storage (MySQL)
-
-👨‍💻 Author
+Author
 Suraj Madhushan
 Software Engineering Student
 University of Moratuwa
 
-⭐ If you like this project
-
-Give it a ⭐ on GitHub and share!
+If you like this project, give it a star on GitHub and share
